@@ -1,11 +1,8 @@
 use std::sync::Arc;
 
 use crate::{
-    cirbuf::CircularBuffer,
-    congestion::CongestionControl,
-    packet::Packet,
-    queue::Queue,
-    UdxSocket, WriteBuffer,
+    cirbuf::CircularBuffer, congestion::CongestionControl, packet::Packet, queue::Queue, UdxSocket,
+    WriteBuffer,
 };
 
 pub struct UdxStream {

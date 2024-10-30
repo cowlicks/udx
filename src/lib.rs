@@ -30,7 +30,6 @@ use packet::PacketHeader;
 pub use socket::UdxSocket;
 pub use stream::UdxStream;
 
-
 // Constants translated from the C implementation
 pub const UDX_MAGIC_BYTE: u8 = 0x75; // 'u'
 pub const UDX_VERSION: u8 = 0x01;
