@@ -195,7 +195,7 @@ impl UdxStream {
 
         // Start transmission if possible
         let mut inner = self.inner.lock().await;
-        self.try_transmit(&mut inner);
+        self.try_transmit(&mut inner)?;
 
         Ok(())
     }
