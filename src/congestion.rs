@@ -21,6 +21,12 @@ pub struct CongestionControl {
     tcp_cwnd: u32,
 }
 
+impl Default for CongestionControl {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl CongestionControl {
     pub fn new() -> Self {
         Self {

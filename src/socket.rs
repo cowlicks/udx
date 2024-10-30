@@ -108,7 +108,7 @@ impl UdxSocket {
     pub async fn send(&self, packet: Packet, addr: SocketAddr) -> Result<()> {
         let bytes = packet.to_bytes();
 
-        match self.inner.socket.send_to(&bytes, &addr) {
+        match self.inner.socket.send_to(&bytes, addr) {
             Ok(n) => {
                 {
                     let mut s = self.inner.stats.lock().await;

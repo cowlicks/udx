@@ -3,8 +3,7 @@ use std::sync::Arc;
 use crate::{
     cirbuf::CircularBuffer,
     congestion::CongestionControl,
-    error::{Result, UdxError},
-    packet::{Packet, PacketHeader},
+    packet::Packet,
     queue::Queue,
     UdxSocket, WriteBuffer,
 };

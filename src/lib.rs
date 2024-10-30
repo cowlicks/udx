@@ -30,12 +30,6 @@ use packet::PacketHeader;
 pub use socket::UdxSocket;
 pub use stream::UdxStream;
 
-use std::{
-    collections::HashMap,
-    net::{SocketAddr, UdpSocket},
-    sync::{Arc, Mutex},
-    time::{Duration, Instant},
-};
 
 // Constants translated from the C implementation
 pub const UDX_MAGIC_BYTE: u8 = 0x75; // 'u'

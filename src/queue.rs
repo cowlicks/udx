@@ -5,6 +5,12 @@ pub struct Queue<T> {
     len: usize,
 }
 
+impl<T> Default for Queue<T> {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl<T> Queue<T> {
     pub fn new() -> Self {
         Self {
