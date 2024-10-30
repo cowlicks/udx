@@ -1,0 +1,15 @@
+[package]
+name = "udx"
+version = "0.1.0"
+edition = "2021"
+description = "Reliable, multiplexed, and congestion controlled streams over UDP"
+license = "MIT"
+
+[dependencies]
+tokio = { version = "1.0", features = ["full"] }
+bytes = "1.0"
+thiserror = "1.0"
+if-addrs = "0.10"  # For interface events 
+
+[dev-dependencies]
+tokio-test = "0.4"
