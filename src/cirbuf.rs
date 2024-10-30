@@ -1,3 +1,4 @@
+#[derive(Clone, Debug)]
 pub struct CircularBuffer<T> {
     values: Vec<Option<T>>,
     size: u32,

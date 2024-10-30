@@ -10,10 +10,12 @@ use tokio::{
     task::spawn,
 };
 
+#[derive(Debug, Clone)]
 pub struct UdxSocket {
     inner: Arc<UdxSocketInner>,
 }
 
+#[derive(Debug)]
 struct UdxSocketInner {
     socket: UdpSocket,
     state: Mutex<SocketState>,

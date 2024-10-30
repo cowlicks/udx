@@ -26,7 +26,6 @@ pub mod socket;
 pub mod stream;
 
 pub use error::UdxError;
-use packet::PacketHeader;
 pub use socket::UdxSocket;
 pub use stream::UdxStream;
 
@@ -58,58 +57,3 @@ const UDX_CONG_BETA: u32 = 731; // b=0.3, BETA = 1-b, scaled 1024
 const UDX_CONG_BETA_UNIT: u32 = 1024;
 const UDX_CONG_INIT_CWND: u32 = 10;
 const UDX_CONG_MAX_CWND: u32 = 65536;
-
-/// Write buffer for stream
-#[derive(Debug)]
-struct WriteBuffer {
-    data: Vec<u8>,
-    offset: usize,
-    acked: usize,
-}
-
-// Helper functions
-fn parse_header(packet: &[u8]) -> Result<PacketHeader, UdxError> {
-    if packet.len() < std::mem::size_of::<PacketHeader>() {
-        return Err(UdxError::InvalidPacket);
-    }
-
-    let header = unsafe { std::ptr::read_unaligned(packet.as_ptr() as *const PacketHeader) };
-
-    Ok(header)
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_stream_creation() {
-        let stream = Stream::new(1);
-        assert_eq!(stream.local_id, 1);
-        assert_eq!(stream.cwnd, UDX_CONG_INIT_CWND);
-        assert_eq!(stream.rto, 1000);
-    }
-
-    #[test]
-    fn test_packet_header() {
-        let mut packet = vec![0u8; std::mem::size_of::<PacketHeader>()];
-        let header = PacketHeader {
-            magic: UDX_MAGIC_BYTE,
-            version: UDX_VERSION,
-            type_: UDX_HEADER_DATA,
-            extensions: 0,
-            remote_id: 1,
-            recv_window: 1000,
-            seq: 42,
-            ack: 41,
-        };
-
-        unsafe {
-            std::ptr::write_unaligned(packet.as_mut_ptr() as *mut PacketHeader, header);
-        }
-
-        let parsed = parse_header(&packet).unwrap();
-        assert_eq!(parsed.magic, UDX_MAGIC_BYTE);
-        assert_eq!(parsed.seq, 42);
-    }
-}

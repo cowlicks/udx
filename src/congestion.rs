@@ -7,13 +7,13 @@ pub enum CongestionState {
     Loss = 3,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct CongestionControl {
     k: u32,
     ack_cnt: u32,
     origin_point: u32,
     delay_min: u32,
-    cnt: u32,
+    pub cnt: u32,
     last_time: std::time::Instant,
     start_time: std::time::Instant,
     last_max_cwnd: u32,

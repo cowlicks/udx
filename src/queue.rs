@@ -1,5 +1,6 @@
 use std::collections::VecDeque;
 
+#[derive(Clone, Debug)]
 pub struct Queue<T> {
     items: VecDeque<T>,
     len: usize,

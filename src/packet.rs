@@ -13,7 +13,7 @@ pub struct PacketHeader {
     pub ack: u32,
 }
 
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 pub struct Packet {
     pub header: PacketHeader,
     pub data: Vec<u8>,

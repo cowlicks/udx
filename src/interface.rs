@@ -9,6 +9,16 @@ pub struct InterfaceMonitor {
     on_change: Box<dyn Fn(&[Interface]) + Send + Sync>,
 }
 
+impl std::fmt::Debug for InterfaceMonitor {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("InterfaceMonitor")
+            .field("interval", &self.interval)
+            .field("interfaces", &self.interfaces)
+            //.field("on_change", &self.on_change)
+            .finish()
+    }
+}
+
 impl InterfaceMonitor {
     pub fn new(interval: Duration) -> Self {
         Self {
